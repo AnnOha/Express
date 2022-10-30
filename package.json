@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/AnnOha/Express/issues"
   },
-  "homepage": "https://github.com/AnnOha/Express#readme"
+  "homepage": "https://github.com/AnnOha/Express#readme",
+  "dependencies": {
+    "number-to-words": "^1.2.4"
+  }
 }
