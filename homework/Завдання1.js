@@ -5,6 +5,6 @@ function convert(num) {
     else
         return ones[num % 10]
 }
-var cases = [4,6,7]
+var cases = [9,6,7]
 for (let i = 0; i < cases.length; i++)
     console.log(Array(convert(cases[i])))
