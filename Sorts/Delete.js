@@ -1,4 +1,4 @@
-const A = [15,2,6,8,9,122,99,11, 45,-1,-30, 87, -9];
+const A = [15,2,6,8,9,122,99,11, 45,-1,-30, 87, -9, 18, 5, 34];
 
 function InsertionSort(array){
   for (let i=0; i < array.length; i++){
