@@ -1,5 +1,4 @@
-const A = ["Rhys","Rowan", "Manon", "Casteel", "Lorcan", "Feyra", "Nesta", "Alex", "Aelin", "Christian","Josh", "Jules", "Stella", "Ava", "Bridget" ];
-
+const A = ["Rhys","Rowan", "Manon", "Casteel", "Lorcan", "Feyra", "Nesta", "Alex", "Aelin", ]
 function InsertionSort(array){
   for (let i=0; i < array.length; i++){
     let element = array[i];
