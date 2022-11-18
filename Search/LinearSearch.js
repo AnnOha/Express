@@ -2,9 +2,9 @@ let Arr = [3,4,10,13,33,10,16,16,16]
 function linearSearch(Arr){
     for(let i=0; i < Arr.length; i++){
         if(Arr[i]= 13){
-            return i
-        }
+        return i
     }
+  }
 }
 
 function mySearch(Arr, target){
@@ -15,4 +15,4 @@ function mySearch(Arr, target){
 }
     return -1
 }
-console.log(linearSearch(Arr, 16))
+console.log(mySearch(Arr, 16))
