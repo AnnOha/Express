@@ -15,4 +15,4 @@ function mySearch(Arr, target){
 }
     return -1
 }
-console.log(mySearch(Arr, 16))
+console.log(mySearch(Arr, 13))
