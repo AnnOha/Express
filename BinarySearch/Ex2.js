@@ -31,4 +31,4 @@ function binarySearch(A, key){
     }
     return indx;
  }
-console.log(binarySearch(A, 9))
+console.log(binarySearch(A,16))
