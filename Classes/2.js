@@ -1,13 +1,12 @@
 class Xiaomi {
-    constructor(){
-        this.weight = "135 g (4.76 oz)";
-        this.Announced = "2007, January. Released 2007, June";
-        this.color = "black";
-        this.memory = "256GB";
-        this.size = "3.5 inches, 36.5 cm2 (~52.0% screen-to-body ratio)"
-        this.Resolution  = "320 x 480 pixels, 3:2 ratio (~165 ppi density)   "
-        this.MAIN_CAMERA  = "12 MP"
-        this.DISPLAY_Type = "Liquid Retina IPS LCD, 625 nits (typ)"
+    constructor(weight, color, memory, Resolution, size, MAIN_CAMERA){
+        this.weight = weight;
+        this.color = color;
+        this.memory = memory;
+        this.size = size;
+        this.Resolution  = Resolution;
+        this.MAIN_CAMERA  = MAIN_CAMERA;
+
     }
 }
 
@@ -42,8 +41,5 @@ let iphone = new Iphone()
 console.log(iphone)
 let samsung = new Samsung()
 console.log(samsung)
-let xiaomi = new Xiaomi()
+let xiaomi = new Xiaomi("500g", "purple", "256GB", "7.10 inches", "2000x2500 px", "16MP", )
 console.log(xiaomi)
-
-
-
