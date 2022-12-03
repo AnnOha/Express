@@ -1,11 +1,11 @@
 class Phone{
-    constructor(weight, color, memory, Resolution, size, MAIN_CAMERA ){
+    constructor(weight, color, memory, Resolution, size, main_camera ){
         this.weight = weight;
         this.color = color;
         this.memory = memory;
         this.size = size;
         this.Resolution  = Resolution;
-        this.MAIN_CAMERA  = MAIN_CAMERA;
+        this.main_camera= main_camera;
        
        
     }
@@ -24,7 +24,7 @@ class Xiaomi extends Phone {
 }
 
 
-let phone = new Phone("Бренд телефону")
+
 
  let samsung = new Samsung("488g", "navy", "125GB", "9.36 inches", "1150x1952 px", "20MP", "Самсунг")
 console.log(samsung)
