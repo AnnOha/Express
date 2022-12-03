@@ -32,7 +32,7 @@ class Xiaomi extends Phone {
 
  class Samsung extends Phone {
     calculatePrice(){
-        return(`You price is ${Math.floor((this.announce * this.Resolution)/55)} $`)
+        return(`You have to pay ${Math.floor((this.announce * this.Resolution)/55)} $ without taxes`)
  }
  }
 
