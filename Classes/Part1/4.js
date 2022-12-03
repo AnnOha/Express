@@ -7,49 +7,41 @@ class Phone{
         this.Resolution  = Resolution;
         this.MAIN_CAMERA  = MAIN_CAMERA;
         this.announce = announce; 
-       
-       
+    }
+    calculatePrice(){
+        return(`You have to pay ${(this.announce * this.memory)/2000} $ without taxes`)
+    }
+    calculateAge(){
+        var date = new Date();
+        date.setYear( date.getFullYear());
+        return(`This phone is ${(date.getFullYear() - this.announce)} years old`)
     }
 }
 
 
 class Iphone extends Phone {
-    calculateAge(){
-        return(`This phone is ${Math.floor((this.memory*16)/this.weight)} years old`)
-    }
 }
 
-
-
 class Xiaomi extends Phone {
-    calculatePower(){
-        return(`Xiaomi phones all have power of ${Math.floor((this.MAIN_CAMERA*15)/5)} W`)
-    }
-
- }
-
-
+}
 
  class Samsung extends Phone {
-    calculatePrice(){
-        return(`You have to pay ${Math.floor((this.announce * this.Resolution)/55)} $ without taxes`)
- }
- }
+}
 
 
 
  
 
-let phone = new Phone("Бренд телефону")
-
-let samsung = new Samsung(488, "navy", "125GB", 9, "1150x1952 px", "20MP", 2016 )
-console.log(samsung.calculatePrice())
+let samsung = new Samsung(488, "navy", 125, 9, "1150x1952 px", "20MP", 2016 )
 console.log(samsung)
-
-let xiaomi = new Xiaomi(540, "yellow", "64GB", 11, "1764x2500 px", 9, 2005 )
-console.log(xiaomi.calculatePower())
+console.log(samsung.calculatePrice())
+console.log(samsung.calculateAge())
+let xiaomi = new Xiaomi(540, "yellow", 64, 11, "1764x2500 px", 9, 2005 )
 console.log(xiaomi)
+console.log(xiaomi.calculatePrice())
+console.log(xiaomi.calculateAge())
 
 let iphone = new Iphone(450, "purple", 256 , "7.10 inches", "2000x2500 px", "16MP", 2002)
-console.log(iphone.calculateAge())
 console.log(iphone)
+console.log(iphone.calculatePrice())
+console.log(iphone.calculateAge())
