@@ -14,12 +14,17 @@ class Phone{
 
 
 class Iphone extends Phone {
-
+    calculateAge(){
+        return(`This phone is ${Math.floor((this.memory*16)/this.weight)} years old`)
+    }
 }
 
 
 
 class Xiaomi extends Phone {
+    calculatePower(){
+        return(`Xiaomi phones all have power of ${Math.floor((this.MAIN_CAMERA*15)/5)} W`)
+    }
 
  }
 
@@ -41,8 +46,10 @@ let samsung = new Samsung(488, "navy", "125GB", 9, "1150x1952 px", "20MP", 2016 
 console.log(samsung.calculatePrice())
 console.log(samsung)
 
-let xiaomi = new Xiaomi(540, "yellow", "64GB", "11.50 inches", "1764x2500 px", "9MP", 2005 )
+let xiaomi = new Xiaomi(540, "yellow", "64GB", 11, "1764x2500 px", 9, 2005 )
+console.log(xiaomi.calculatePower())
 console.log(xiaomi)
 
-let iphone = new Iphone(450, "purple", "256GB" , "7.10 inches", "2000x2500 px", "16MP", 2002)
+let iphone = new Iphone(450, "purple", 256 , "7.10 inches", "2000x2500 px", "16MP", 2002)
+console.log(iphone.calculateAge())
 console.log(iphone)

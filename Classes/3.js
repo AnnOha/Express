@@ -13,18 +13,15 @@ class Phone{
 
 
 class Iphone extends Phone {
-
 }
 
 
 class Xiaomi extends Phone {
-   
- }
+}
 
 
  class Samsung extends Phone {
- 
- }
+}
 
 
 let phone = new Phone("Бренд телефону")
