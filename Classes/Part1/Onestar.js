@@ -66,8 +66,6 @@ class Phone{
     }
 }
 
-
-
 class Iphone extends Phone {
 }
 
@@ -78,11 +76,32 @@ class Xiaomi extends Phone {
 }
 
 iphone = new Iphone()
-// '100', 'white', 128, '2100x1230', 'big'
-iphone.weight = '100';
+iphone.weight = '450g'
 iphone.color = 'red'
-xiaomi = new Xiaomi(540, "yellow", 64, 11, "1764x2500 px", 9, 2005 )
+iphone.memory = "256GB"
+iphone.size = "7.10 inches"
+iphone.resolution = "2000x2500 px"
+iphone.MAIN_CAMERA = "16MP"
+iphone.announce = "Year 2002"
+
+xiaomi = new Xiaomi()
+xiaomi.weight = '540g'
 xiaomi.color = "yellow"
-samsung = new Samsung(488, "navy", 125, 9, "1150x1952 px", "20MP", 2016 )
+xiaomi.memory = "64GB"
+xiaomi.size = "11.225 inches"
+xiaomi.resolution = "1764x2500 px"
+xiaomi.MAIN_CAMERA = "9MP"
+xiaomi.announce = "Year 2005"
+
+samsung = new Samsung( )
+samsung.weight = '488g'
+samsung.color = "navy"
+samsung.memory = "128GB"
+samsung.size = "9.130 inches"
+samsung.resolution = "1150x1952 px"
+samsung.MAIN_CAMERA = "20MP"
+samsung.announce = "Year 2016"
+
 console.log(iphone);
 console.log(samsung);
+console.log(xiaomi);
