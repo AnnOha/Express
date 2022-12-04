@@ -36,6 +36,7 @@ let samsung = new Samsung(488, "navy", 125, 9, "1150x1952 px", "20MP", 2016 )
 console.log(samsung)
 console.log(samsung.calculatePrice())
 console.log(samsung.calculateAge())
+
 let xiaomi = new Xiaomi(540, "yellow", 64, 11, "1764x2500 px", 9, 2005 )
 console.log(xiaomi)
 console.log(xiaomi.calculatePrice())
