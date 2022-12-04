@@ -1,5 +1,4 @@
 function InsertionSort(array){
-  debugger
   for (let i=0; i < array.length; i++){
     let element = array[i];
     let prev_index = i - 1;
@@ -49,4 +48,4 @@ let users = [
   {Name: "Sam Cortland", age: 18 },
  
 ]
-console.log(searchbyAge(users, 33))
+console.log(searchbyAge(users, 18))
