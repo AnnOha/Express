@@ -1,6 +1,9 @@
 const fs = require("fs");
 
-fs.open("sample.txt", "w", (err, file) => {
+fs.open("Faab.txt", "r", (err, file) => {
    if (err) throw err;
-   console.log(file);
+   fs.readFile(file, (err, data) => {
+      if (err) throw err;
+      console.log(data.toString());
+   });
 });
