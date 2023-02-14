@@ -7,3 +7,8 @@ fs.open("Faab.txt", "r", (err, file) => {
       console.log(data.toString());
    });
 });
+
+fs.writeFile("Acortar.txt", "Writing content", (err) => {
+    if (err) throw err;
+    console.log("Completed!");
+ });
