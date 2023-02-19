@@ -32,24 +32,17 @@ try {
    console.log(error);
  }
 
+ 
 //5
- const path = require('path');
- 
- function transferFile(sourcePath, destPath) {
-   const sourceStream = fs.createReadStream(sourcePath);
-   const destStream = fs.createWriteStream(destPath);
- 
-   sourceStream.pipe(destStream);
- 
-   sourceStream.on('end', () => {
-     console.log('File transfer complete!');
-   });
- 
-   sourceStream.on('error', (err) => {
-     console.error(`Error transferring file: ${err}`);
-   });
- }
-const sourcePath = path.join(__dirname, 'Books', 'Acortar.txt');
-const destPath = path.join(__dirname, 'Books1', 'Acortar.txt');
 
-transferFile(sourcePath, destPath);
+const path = require('path');
+const currentPath = path.join(__dirname, 'Books', 'Tog.txt');
+const newPath = path.join(__dirname, 'Books1', 'Tog.txt');
+
+fs.rename(currentPath, newPath, (err) => {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log('File moved successfully!');
+  }
+});
