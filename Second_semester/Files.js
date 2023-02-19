@@ -32,8 +32,10 @@ try {
    console.log(error);
  }
 
-//5
-function transferFile(sourcePath, destPath) {
+
+ const path = require('path');
+ 
+ function transferFile(sourcePath, destPath) {
    const sourceStream = fs.createReadStream(sourcePath);
    const destStream = fs.createWriteStream(destPath);
  
