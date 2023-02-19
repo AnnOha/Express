@@ -32,7 +32,7 @@ try {
    console.log(error);
  }
 
-
+//5
  const path = require('path');
  
  function transferFile(sourcePath, destPath) {
@@ -49,4 +49,7 @@ try {
      console.error(`Error transferring file: ${err}`);
    });
  }
- transferFile(Second_semester, First_semester)
+const sourcePath = path.join(__dirname, 'Books', 'Acortar.txt');
+const destPath = path.join(__dirname, 'Books1', 'Acortar.txt');
+
+transferFile(sourcePath, destPath);
