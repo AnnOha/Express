@@ -31,3 +31,20 @@ try {
  } catch (error) {
    console.log(error);
  }
+
+//5
+function transferFile(sourcePath, destPath) {
+   const sourceStream = fs.createReadStream(sourcePath);
+   const destStream = fs.createWriteStream(destPath);
+ 
+   sourceStream.pipe(destStream);
+ 
+   sourceStream.on('end', () => {
+     console.log('File transfer complete!');
+   });
+ 
+   sourceStream.on('error', (err) => {
+     console.error(`Error transferring file: ${err}`);
+   });
+ }
+ transferFile(Second_semester, First_semester)
