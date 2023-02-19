@@ -8,7 +8,13 @@ fs.open("Faab.txt", "r", (err, file) => {
    });
 });
 
-fs.writeFile("Acortar.txt", "Writing content", (err) => {
+fs.writeFile("Acortar.txt", `Welcome to Velaris.${String.fromCodePoint(0x1F320)}`, (err) => {
     if (err) throw err;
-    console.log("Completed!");
+    console.log("Created!");
  });
+
+
+ fs.appendFile("Acortar.txt", " The city of Starlight", (err) => {
+   if (err) throw err;
+   console.log("Added!");
+});
