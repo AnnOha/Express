@@ -1,6 +1,6 @@
 const fs = require("fs");
 //1. Завдання
-
+function Read(){ 
 fs.open("Faab.txt", "r", (err, file) => {
    if (err) throw err;
    fs.readFile(file, (err, data) => {
@@ -8,21 +8,32 @@ fs.open("Faab.txt", "r", (err, file) => {
       console.log(data.toString());
    });
 });
+}
+Read()
+
 //2
+function Create(){ 
 fs.writeFile("Acortar.txt", `Welcome to Velaris.${String.fromCodePoint(0x1F320)}`, (err) => {
     if (err) throw err;
     console.log("Created!");
  });
+}
+Create()
+
 
 //3.
+function Add(){
  fs.appendFile("Acortar.txt", " The city of Starlight", (err) => {
    if (err) throw err;
    console.log("Added!");
 });
+}
+Add()
 
 //4
+function Delete(){
 try {
-   if(fs.existsSync('Acotar.txt')){
+   if(fs.existsSync('Acortar.txt')){
       fs.unlinkSync('Acortar.txt');
       console.log("Delete File successfully.");
    }else{
@@ -31,18 +42,20 @@ try {
  } catch (error) {
    console.log(error);
  }
-
+}
+Delete()
  
 //5
-
 const path = require('path');
-const currentPath = path.join(__dirname, 'Books', 'Tog.txt');
-const newPath = path.join(__dirname, 'Books1', 'Tog.txt');
 
-fs.rename(currentPath, newPath, (err) => {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log('File moved successfully!');
-  }
-});
+function copyFile(source, destination) {
+  const sourcePath = path.join(__dirname, source);
+  const destinationPath = path.join(__dirname, destination);
+  
+  fs.copyFile(sourcePath, destinationPath, (err) => {
+    if (err) throw err;
+    console.log('File was copied successfully!');
+  });
+}
+
+copyFile('Books/Tog.txt', 'Abooks/Tog1.txt');
