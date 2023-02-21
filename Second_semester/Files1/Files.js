@@ -55,7 +55,7 @@ function moveFile(source, destination) {
 
   fs.rename(sourcePath, destinationPath, (err) => {
     if (err) throw err;
-    console.log('File was moved successfully!');
+    console.log(`'File was moved successfully!We had luck ${String.fromCodePoint(0x1F643)}'`);
   });
 }
 
