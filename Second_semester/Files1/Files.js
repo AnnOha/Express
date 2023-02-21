@@ -46,16 +46,17 @@ try {
 Delete()
  
 //5
+
 const path = require('path');
 
-function copyFile(source, destination) {
+function moveFile(source, destination) {
   const sourcePath = path.join(__dirname, source);
   const destinationPath = path.join(__dirname, destination);
-  
-  fs.copyFile(sourcePath, destinationPath, (err) => {
+
+  fs.rename(sourcePath, destinationPath, (err) => {
     if (err) throw err;
-    console.log('File was copied successfully!');
+    console.log('File was moved successfully!');
   });
 }
 
-copyFile('Books/Tog.txt', 'Abooks/Tog1.txt');
+moveFile('Books/Tog.txt', 'Abooks/Tog1.txt');
