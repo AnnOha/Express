@@ -50,15 +50,16 @@ function updateProductById(id, updatedProduct) {
     }
   }
   fs.writeFileSync(FILE_NAME, updatedProducts);
-  console.log("Product updated")
+ // console.log("Product updated")
 }
 
 // Приклад використання функцій
+addProduct({id:"Id:1", name:"Product: honeydew", price:"Price: 155"})
+updateProductById("Id:1", {id:"Id:1", name:"Product:Rhys", price: "Price: 500"})
+addProduct({id:"Id:2", name:"Product: Cas", price:"Price: 100B"})
+addProduct({id:"Id:3", name:"Product: Soup", price:"Price: 255"})
+deleteProductById("Id:3")
+console.log(getProductById("Id:2"))
 
 
-
-addProduct({id:"Product id: 5 ", name:"Product: honeydew", price:"Price: 155"})
-getProductById(5)
-deleteProductById(5)
-updateProductById({id:`ProductId: 5`, name:"Product: Soup", price:"Price: 200"})
 
