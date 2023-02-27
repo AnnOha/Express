@@ -2,7 +2,7 @@ const fs = require('fs');
 const csvWriter = require('csv-writer').createObjectCsvWriter;
 const csvParser = require('csv-parser');
 
-const FILENAME = 'shopping_list1.csv';
+const FILENAME = 'shopping_list.csv';
 
 // Створення об'єкта csvWriter
 const writer = csvWriter({
