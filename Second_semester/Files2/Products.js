@@ -8,7 +8,7 @@ function addProduct(product) {
   console.log('Product has been added to your shopping list');
 }
 
-// Функція для отримання даних про продукт за його унікальним ідентифікатором
+// Функція для отриманно продукт за його унікальним ідентифікатором
 function getProductById(id) {
   const fileData = fs.readFileSync(FILE_NAME, 'utf8');
   const products = fileData.split('\n');
