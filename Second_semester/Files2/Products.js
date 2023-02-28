@@ -1,65 +1,69 @@
 const fs = require('fs');
 
-const FILE_NAME = 'shopping_list.csv';
 
-// Функція для додавання продукту у список
-function addProduct(product) {
-  fs.appendFileSync(FILE_NAME, `${product.id},${product.name},${product.price}\n`);
-  console.log('Product has been added to your shopping list');
+const file = 'shopping_list.csv';
+
+// Додавання продукту у список
+function Add(product) {
+  fs.appendFileSync(file, `${product.id},${product.name},${product.price}\n`);
+  console.log(`${product.name} has been added to our list`);
 }
 
-// Функція для отриманно продукт за його унікальним ідентифікатором
-function getProductById(id) {
-  const fileData = fs.readFileSync(FILE_NAME, 'utf8');
-  const products = fileData.split('\n');
-  for (const product of products) {
-    const [productId, name, price] = product.split(',');
-    if (productId === id) {
-      return { id: productId, name, price };
-    } 
+
+// Отримання продукту за його унікальним ідентифікатором
+  function Get(id) {
+    const FileData = fs.readFileSync(file, 'utf8');
+    const Products = FileData.split('\n');
+    for (const Product of Products) {
+      const [ProdId, name, price] = Product.split(',');
+      if (ProdId === id) {
+        return { id: ProdId, name, price };
+      } 
+    }
+    return null;
   }
-  return null;
-}
+
+
 
 // Функція для видалення продукту зі списку за його унікальним ідентифікатором
-function deleteProductById(id) {
-  const fileData = fs.readFileSync(FILE_NAME, 'utf8');
-  const products = fileData.split('\n');
-  let updatedProducts = '';
-  for (const product of products) {
-    const [productId] = product.split(',');
-    if (productId !== id) {
-      updatedProducts += `${product}\n`;
+function Delete(id) {
+  const FileData = fs.readFileSync(file, 'utf8');
+  const Products = FileData.split('\n');
+  let UpdatedProducts = '';
+  for (const Product of Products) {
+    const [ProdId] = Product.split(',');
+    if (ProdId !== id) {
+      UpdatedProducts += `${Product}\n`;
     }
   }
-  fs.writeFileSync(FILE_NAME, updatedProducts);
-  console.log("Product deleted")
+  fs.writeFileSync(file, UpdatedProducts);
+  console.log("Deleted ")
 }
 
 // Функція для зміни продукту за його унікальним ідентифікатором
-function updateProductById(id, updatedProduct) {
-  const fileData = fs.readFileSync(FILE_NAME, 'utf8');
-  const products = fileData.split('\n');
-  let updatedProducts = '';
-  for (const product of products) {
-    const [productId] = product.split(',');
-    if (productId === id) {
-      updatedProducts += `${updatedProduct.id},${updatedProduct.name},${updatedProduct.price}\n`;
+function Update(id, updatedProduct) {
+  const FileData = fs.readFileSync(file, 'utf8');
+  const Products = FileData.split('\n');
+  let UpdatedProd = '';
+  for (const Product of Products) {
+    const [ProdId] = Product.split(',');
+    if (ProdId === id) {
+      UpdatedProd += `${updatedProduct.id},${updatedProduct.name},${updatedProduct.price}\n`;
     } else {
-      updatedProducts += `${product}\n`;
+      UpdatedProd += `${Product}\n`;
     }
   }
-  fs.writeFileSync(FILE_NAME, updatedProducts);
- // console.log("Product updated")
+  fs.writeFileSync(file, UpdatedProd);
+  console.log(` ${updatedProduct.name} the Batboy is in the list`)
 }
 
-// Приклад використання функцій
-addProduct({id:"Id:1", name:"Product: honeydew", price:"Price: 155"})
-updateProductById("Id:1", {id:"Id:1", name:"Product:Rhys", price: "Price: 500"})
-addProduct({id:"Id:2", name:"Product: Cas", price:"Price: 100B"})
-addProduct({id:"Id:3", name:"Product: Soup", price:"Price: 255"})
-deleteProductById("Id:3")
-console.log(getProductById("Id:2"))
+
+Add({id:"Id:1", name:"Product: honeydew", price:"Price: 155"})
+Update("Id:1", {id:"Id:1",name:"Product: Rhys", price: "Price: 500B"})
+Add({id:"Id:2", name:"Product: Cas", price:"Price: 200B"})
+Add({id:"Id:3", name:"Product: Soup", price:"Price: 255"})
+Delete("Id:1")
+console.log(Get("Id:3"))
 
 
 
