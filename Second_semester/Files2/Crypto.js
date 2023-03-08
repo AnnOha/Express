@@ -17,7 +17,7 @@ function HashAndSave(password, filePath) {
 function ComparePass(password, filePath) {
   const data = fs.readFileSync(filePath); 
   const { salt, hash } = JSON.parse(data); 
-  const inputHash = crypto.pbkdf2Sync(password, salt, 10000, 32, 'sha512').toString('hex');
+  const inputHash = crypto.pbkdf2Sync(password, salt, 10000, 16, 'sha512').toString('hex');
   const result = inputHash === hash;
   console.log(result  ? `'Паролі співпадають ${String.fromCodePoint(0x1F60F)}'` : `'Паролі не співпадають${String.fromCodePoint(0x1F612)}'`);
   return result;
