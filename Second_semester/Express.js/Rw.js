@@ -6,7 +6,7 @@ app.get('/', function(req, res) {
  
   });
 
-
+  app.use(express.static('public'));
   app.get('/about', function(req,res){
     fs.readFile('./Rh.html', (err, data)=>{
       if(err){
