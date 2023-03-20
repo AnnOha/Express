@@ -1,16 +1,15 @@
-
 const fileSystem = require("fs");
 var data = "";
 
 let Fletter = 0;
 let letter = false;
 
-const readStream = fileSystem.createReadStream("text.txt");
+const readStream = fileSystem.createReadStream("Acofas.txt");
 readStream.setEncoding("UTF8");
 
 readStream.on("data", (chunk) => {
 	data += chunk;
-	console.log(data);
+	
 
 	const text = chunk.toString();
 	for (let i = 0; i < text.length; i++) {
@@ -25,7 +24,7 @@ readStream.on("data", (chunk) => {
     }
   }
 
-  console.log('----------------------------------------------------')
+ 
 
 });
 
