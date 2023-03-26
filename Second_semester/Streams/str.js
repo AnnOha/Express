@@ -23,9 +23,6 @@ readStream.on("data", (chunk) => {
       letter = false;
     }
   }
-
- 
-
 });
 
 readStream.on('end', () => {
