@@ -1,35 +1,35 @@
 const removeZ = require('../src/removeZ');
 
 describe("Z-remover Tests", () => {
-test("Remove the 'z' from words", () => {
 // arrange and act
-var result = mathOperations.sum(1,2)
+// Перший тест - перевіряє, чи повертає функція рядок без символів "z" при передачі масиву з однією строкою без "z"
+test('Returns string without "z"', () => {
+    const arr = ["trailblazer","hydralazine", "tetrazolium","azoospermia"];
+    const result = 'trailblaerhydralainetetraoliumaoospermia';
+    const actual = removeZ(arr);
+    expect(actual).toBe(result);
+  });
+  
+  test('Returns string without "z" when there are multiply "z"', () => {
+    const arr = ['amazing', 'mozzarella', 'dazzlingly', 'zizzled'];
+    const result = 'amaingmoarelladalinglyiled';
+    const actual = removeZ(arr);
+    expect(actual).toBe(result);
+  });
+  
 
-// assert
-expect(result).toBe(3);
+  test('returns empty string when passed an empty array', () => {
+    const arr = [];
+    const result = '';
+    const actual = removeZ(arr);
+    expect(actual).toBe(result);
+  });
+  
+  test('Returns string without Upper and Lowercase "Z,z"', () => {
+    const arr = ['Zade', 'moZzarella', 'Zach', 'zizzled'];
+    const result = 'ademoarellaachiled';
+    const actual = removeZ(arr);
+    expect(actual).toBe(result);
+  });
+
 });
-
-test("Subtraction of 2 numbers", () => {
-// arrange and act
-var result = mathOperations.diff(10,2)
-
-// assert
-expect(result).toBe(8);
-});
-
-test("Multiplication of 2 numbers", () => {
-// arrange and act
-var result = mathOperations.product(2,8)
-
-// assert
-expect(result).toBe(16);
-});
-
-test("Division of 2 numbers", () => {
-// arrange and act
-var result = mathOperations.divide(24,8)
-
-// assert
-expect(result).toBe(3);
-});
-})
