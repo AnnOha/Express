@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles.css" />
-
+    <link rel="stylesheet" href="styles.css" />
+    
     <title>Password generator</title>
   </head>
   <body>
@@ -26,35 +26,43 @@
       </div>
       <!-- Length -->
       <div class="length1">
-        <p class="length">length(4-10)
-          <input type="number" min="4", max="10",step="1",class="length-item"/>
+        <p class="length">
+          length(4-10)
+          <input
+            type="number"
+            min="4"
+            ,
+            max="15"
+            ,step="1"
+            ,class="length-item"
+          />
         </p>
       </div>
       <!-- parameters -->
       <div>
-      <div class="parameters-1">
-        <input type="checkbox" id="ABC" class="checkbox-input">
-        <label for="ABC" class="checkbox-label">ABC</label>
-      </div>
-      <div class="parameters-2">
-        <input type="checkbox" id="abc" class="checkbox-input">
-        <label for="ABC" class="checkbox-label">abc</label>
-      </div>
-      <div class="parameters-3">
-        <input type="checkbox" id="123" class="checkbox-input">
-        <label for="ABC" class="checkbox-label">123</label>
-      </div>
-      <div class="parameters-4">
-        <input type="checkbox" id="#!%" class="checkbox-input">
-        <label for="ABC" class="checkbox-label">#!%</label>
-      </div>
+        <div class="parameters-1">
+          <input type="checkbox" id="ABC" class="checkbox-input" />
+          <label for="ABC" class="checkbox-label">ABC</label>
+        </div>
+        <div class="parameters-2">
+          <input type="checkbox" id="abc" class="checkbox-input" />
+          <label for="ABC" class="checkbox-label">abc</label>
+        </div>
+        <div class="parameters-3">
+          <input type="checkbox" id="num123" class="checkbox-input" />
+          <label for="ABC" class="checkbox-label">123</label>
+        </div>
+        <div class="parameters-4">
+          <input type="checkbox" id="#symbols" class="checkbox-input" />
+          <label for="ABC" class="checkbox-label">#!%</label>
+        </div>
       </div>
       <!-- button -->
-      <div class="button">
-        <button class="btn" , width: 306px; height: 45px;>Get password</button>
-        
+      <div>
+        <button class="btn" id="button">Get password</button>
+        <script src="pr.js"></script>
+        <p class="bye">Thank you for choosing us</p>
       </div>
     </div>
   </body>
 </html>
-<p class="bye">Thank you for choosing us</p>

@@ -6,13 +6,13 @@ const Lgpass = [
 
 ]
 
-function Lgpassw(){
+function Lgpassw(login, password){
     const user = Lgpass.find(
         (user) => user.login === login && user.password === password
       );
     
       if (!user) {
-        throw new Error("Invalid credentials");
+        throw new  Error("Invalid credentials");
       }
     return user.secretPhrase;
     }
