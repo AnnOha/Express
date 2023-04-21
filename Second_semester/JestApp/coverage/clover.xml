@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1682062474804" clover="3.2.0">
-  <project timestamp="1682062474804" name="All files">
-    <metrics statements="7" coveredstatements="6" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2" elements="13" coveredelements="11" complexity="0" loc="7" ncloc="7" packages="1" files="1" classes="1"/>
+<coverage generated="1682064904502" clover="3.2.0">
+  <project timestamp="1682064904502" name="All files">
+    <metrics statements="11" coveredstatements="6" conditionals="16" coveredconditionals="5" methods="1" coveredmethods="1" elements="28" coveredelements="12" complexity="0" loc="11" ncloc="11" packages="1" files="1" classes="1"/>
     <file name="Lgnpass.js" path="D:\Нова папка\Нова папка\Express\Second_semester\JestApp\src\Lgnpass.js">
-      <metrics statements="7" coveredstatements="6" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
+      <metrics statements="11" coveredstatements="6" conditionals="16" coveredconditionals="5" methods="1" coveredmethods="1"/>
       <line num="1" count="1" type="stmt"/>
       <line num="10" count="1" type="stmt"/>
-      <line num="11" count="4" type="cond" truecount="2" falsecount="0"/>
-      <line num="14" count="1" type="cond" truecount="1" falsecount="1"/>
-      <line num="15" count="1" type="stmt"/>
-      <line num="17" count="0" type="stmt"/>
-      <line num="19" count="1" type="stmt"/>
+      <line num="11" count="1" type="cond" truecount="2" falsecount="2"/>
+      <line num="12" count="0" type="stmt"/>
+      <line num="13" count="1" type="cond" truecount="3" falsecount="1"/>
+      <line num="14" count="1" type="stmt"/>
+      <line num="15" count="0" type="cond" truecount="0" falsecount="4"/>
+      <line num="16" count="0" type="stmt"/>
+      <line num="17" count="0" type="cond" truecount="0" falsecount="4"/>
+      <line num="18" count="0" type="stmt"/>
+      <line num="21" count="1" type="stmt"/>
     </file>
   </project>
 </coverage>

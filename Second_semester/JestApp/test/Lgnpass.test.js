@@ -1,6 +1,10 @@
 const Lgpassw =require('../src/Lgnpass.js')
+describe("Bookboyfriend Tests", () => {
 
-test("returns secret phrase for valid credentials", () => {
-    expect(Lgpassw("Aaron Warner", `"${String.fromCodePoint(0x1F60F)}"`)).toBe(" LYHFML");
+test("returns secret phrase", () => {
+    expect(Lgpassw("Aaron Warner", "123")).toBe(" LYHFML");
   });
-  
+})
+/*let b= [login = "Aaron Warner" , password ="123"]
+let a=  'LYHFML'
+ expect(b).toBe(a);*/
