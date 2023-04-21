@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">54.54% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/11</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">31.25% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/16</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">54.54% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/11</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -82,8 +82,7 @@
 <a name='L17'></a><a href='#L17'>17</a>
 <a name='L18'></a><a href='#L18'>18</a>
 <a name='L19'></a><a href='#L19'>19</a>
-<a name='L20'></a><a href='#L20'>20</a>
-<a name='L21'></a><a href='#L21'>21</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L20'></a><a href='#L20'>20</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -91,38 +90,36 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">const Lgpass = [
     {login: "Rhys Larsen", password:`"${String.fromCodePoint(0x1F601)}"`, secretPhrase: "STFUATTLDLAGG"},
     {login: "Cassian", password:`"${String.fromCodePoint(0x1F60E)}"`, secretPhrase: "PYHOTH"},
-    {login: "Aaron Warner", password: "123", secretPhrase: "LYHFML"},
+    {login: "Aaron Warner", password: `"${String.fromCodePoint(0x1F60C)}"`, secretPhrase: "LYHFML"},
     {login: "Dante Russo", password:`"${String.fromCodePoint(0x1F60F)}"`, secretPhrase: "CUYMV"}
 &nbsp;
 ]
 &nbsp;
-function Lgpassw(login, password){
-  const user = Lgpass.find
-    <span class="missing-if-branch" title="if path not taken" >I</span>if(login === user.login &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >password === user.password)</span>{
-<span class="cstat-no" title="statement not covered" >     return user.secretPhrase;</span>
-    } else if (login !== user.login &amp;&amp; password !== user.password){
-      return 'invalid';
-    } else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="else path not taken" >E</span>if(login !== user.login &amp;&amp; password ===user.password){</span>
-<span class="cstat-no" title="statement not covered" >      return 'login incorrect';</span>
-    }else <span class="cstat-no" title="statement not covered" >if (login === user.login &amp;&amp; password !== user.password){</span>
-<span class="cstat-no" title="statement not covered" >     return('pass incorrect ');</span>
+function Lgpassw(login, password){  
+  const user = Lgpass.find(user =&gt; user.login === login &amp;&amp; user.password === password);
+    if (user) {
+        return user.secretPhrase;
+    } else
+        return 'Incorrect login or password';
     }
-  }
+  
+&nbsp;
+&nbsp;
+  
     module.exports = Lgpassw;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -130,7 +127,7 @@ function Lgpassw(login, password){
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-04-21T08:15:04.481Z
+                at 2023-04-21T10:46:55.816Z
             </div>
         <script src="prettify.js"></script>
         <script>
