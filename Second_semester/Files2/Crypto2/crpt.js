@@ -1,4 +1,4 @@
-/*
+
 require("pidcrypt/seedrandom");
 var pidCrypt = require("pidcrypt");
 
@@ -28,7 +28,8 @@ function encryptFile(filePath) {
   });
 }
 encryptFile("hades.txt")
-*/
+
+
 require("pidcrypt/seedrandom");
 var pidCrypt = require("pidcrypt");
 
