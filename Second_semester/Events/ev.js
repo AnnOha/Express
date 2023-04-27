@@ -1,58 +1,81 @@
- const event = require('events')
- const fs = require('fs'); 
- 
+const event = require('events');
+const fs = require('fs');
 
- class Temp extends event {
-    constructor() {
-      super();
-      this.temp = {};
-      this.tempfilePath = 'temp.json';
-      this.LoadTemperatures();
-    }
-}
+const Mailjet = require('node-mailjet')
+const mailjet = new Mailjet({
+  apiKey: "4ca14c170f7ca87f0c03b84db91545ea",
+  apiSecret: "be3ebbb526be2508758ba86c8f6530e7"
+});
 
-addTemperature(date, temp);{
+class Temp extends event {
+  constructor() {
+    super();
+    this.temp = {};
+    this.tempfilePath = 'temp.json';
+    this.loadTemp();
+  }
+
+  addTemp(date, temp) {
     this.temp[date] = temp;
     this.saveTemp();
-    const AveTemp = temp.reduce((acc, val) => acc + val, 0) / Temp.length;
+    const AveTemp = temp.reduce((acc, val) => acc + val, 0) / temp.length;
     if (AveTemp > 30) {
-      this.emit('highTemperature', {date, temp: AveTemp});
+      this.emit('highTemp', {date, temp: AveTemp});
     }
   }
 
-
-
-
-getAveTemp(date); {
+  AveTemp(date) {
     const tempforDate = this.temp[date];
     if (!tempforDate || tempforDate.length === 0) {
-      console.log(`There is no information about the temperature on this date:${date}`);
+      console.log('----------------------------------------------------')
+      console.log(`On this ${date} there're no temperature info`);
       return;
     }
-    const totalTemperature = temperaturesForDate.reduce((acc, val) => acc + val, 0);
-    const AveTemp = totalTemperature / temperaturesForDate.length;
-    console.log(`The average temperature on this date ${date} is: ${AveTemp} Celsium`);
-}
-
-
-saveTemp();{
+    const totalTemperature = tempforDate.reduce((acc, val) => acc + val, 0);
+    const AveTemp = totalTemperature / tempforDate.length;
+    console.log(`Average air temp. for ${date}: ${AveTemp} C`);
+ 
+    const request = mailjet
+        .post("send", {'version': 'v3.1'})
+        .request({
+            "Messages":[{
+                "From": {
+                    "Email": "mytemp25@gmail.com",
+                    "Name": "Temperature Tracker"
+                },
+                "To": [{
+                    "Email": "YOU-EMAIL@gmail.com",
+                    "Name": "Temperature Tracker"
+                }],
+                "Subject": `Average air temp. for ${date}`,
+      
+                "TextPart": `Average air temp. for${date}: ${AveTemp}`,
+                "HTMLPart": `<h3>Average air temp. for ${date}: ${AveTemp} °C</h3>`
+            }]
+        })
+    request
+        .catch((err) => {
+            console.log(err.statusCode)
+        })
+  }
+  
+  saveTemp() {
     try {
-      fs.writeFileSync(this.tempfilePath, JSON.stringify(this.temp), 'utf16');
+      fs.writeFileSync(this.tempfilePath, JSON.stringify(this.temp), 'utf8');
     } catch (err) {
       console.error(err);
     }
   }
+  
 
-
-
-  LoadTemperatures(); {
-    fs.readFile(this.tempfilePath, 'utf16', (err, data) => {
+  loadTemp() {
+    fs.readFile(this.tempfilePath, 'utf8', (err, data) => {
       if (err) {
         if (err.code === 'ENOENT') { // якщо файл не знайдено
-          console.log(`File: ${this.temperaturesFilePath} is not found. Creating a new one...`);
+          console.log(`File: ${this.tempfilePath} is not found. Creating a new one...`);
           this.saveTemp(); // створюємо новий файл
           setTimeout(() => {
-            this.emit('Temperatures Loaded');
+            this.emit('tempLoaded');
           }, 1000);
           return;
         }
@@ -60,33 +83,34 @@ saveTemp();{
         return;
       }
       try {
-        const LoadedTemp = JSON.parse(data);
-        this.temperatures = Object.assign({}, this.temperatures, LoadedTemp);
-        this.emit('Temperatures Loaded');
+        const loadedTemp = JSON.parse(data);
+        this.temp = Object.assign({}, this.temp, loadedTemp);
+        this.emit('tempLoaded');
       } catch (e) {
         console.error(e);
       }
     });
   }
+}
+
+const sensor = new Temp();
+
+sensor.on('highTemp', ({date, temp}) => {
+  console.log(`Attention Detention! Average air temp. higher than 30 C (${temp} Celsium) on ${date}`);
+  console.log('----------------------------------------------------')
+});
+
+sensor.on('tempLoaded', () => {
+  sensor.addTemp("27.04.2023", [5, 28]);
+  sensor.addTemp("28.04.2023", [14, 45, 37, 22, 11]);
+  sensor.addTemp("29.04.2023", [8]);
+  sensor.addTemp("30.04.2023", [40]);
+
+  sensor.AveTemp("27.04.2023");
+  sensor.AveTemp("28.04.2023");
+  sensor.AveTemp("29.04.2023");
+  sensor.AveTemp("30.04.2023");
 
 
-
-
-  const sensor = new TemperatureSensor();
-
-  sensor.on('highTemperature', ({date, temperature}) => {
-    console.log(`Увага! Середня температура повітря вища за 30 градусів (${temperature} градусів) на дату ${date}`);
-  });
-  
-  sensor.on('temperaturesLoaded', () => {
-    sensor.addTemperature("2023-04-24", [18, 32]);
-    sensor.addTemperature("2023-04-25", [41, 15, 17, 30, 25]);
-    sensor.addTemperature("2023-04-26", [22.5]);
-  
-    sensor.getAverageTemperature("2023-04-24");
-    sensor.getAverageTemperature("2023-04-25");
-    sensor.getAverageTemperature("2023-04-26");
-  
-    console.log(sensor.temperatures);
-  });
-
+  console.log(sensor.temp);
+});
