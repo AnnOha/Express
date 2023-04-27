@@ -28,12 +28,12 @@ class Temp extends event {
     const tempforDate = this.temp[date];
     if (!tempforDate || tempforDate.length === 0) {
       console.log('----------------------------------------------------')
-      console.log(`On this ${date} there're no temperature info`);
+      console.log(`On this ${date} there're no temperature info ${String.fromCodePoint(0x1F616	)}`);
       return;
     }
     const totalTemperature = tempforDate.reduce((acc, val) => acc + val, 0);
     const AveTemp = totalTemperature / tempforDate.length;
-    console.log(`Average air temp. for ${date}: ${AveTemp} C`);
+    console.log(`Average air temp.  for ${date}: ${AveTemp}  ${String.fromCodePoint(0x1F321)} C`);
  
     const request = mailjet
         .post("send", {'version': 'v3.1'})
@@ -47,10 +47,10 @@ class Temp extends event {
                     "Email": "YOU-EMAIL@gmail.com",
                     "Name": "Temperature Tracker"
                 }],
-                "Subject": `Average air temp. for ${date}`,
+                "Subject": `Average air temp. for ${date}  ${String.fromCodePoint(0x1F321)}  `,
       
-                "TextPart": `Average air temp. for${date}: ${AveTemp}`,
-                "HTMLPart": `<h3>Average air temp. for ${date}: ${AveTemp} °C</h3>`
+                "TextPart": `Average air temp. for${date}: ${AveTemp} ${String.fromCodePoint(0x1F321)} `,
+                "HTMLPart": `<h3>Average air temp. for ${date}: ${AveTemp}${String.fromCodePoint(0x1F321)} °C</h3>`
             }]
         })
     request
@@ -72,7 +72,7 @@ class Temp extends event {
     fs.readFile(this.tempfilePath, 'utf8', (err, data) => {
       if (err) {
         if (err.code === 'ENOENT') { // якщо файл не знайдено
-          console.log(`File: ${this.tempfilePath} is not found. Creating a new one...`);
+          console.log(`File: ${this.tempfilePath} is not found ${String.fromCodePoint(0x1F601)}. Creating a new one...`);
           this.saveTemp(); // створюємо новий файл
           setTimeout(() => {
             this.emit('tempLoaded');
@@ -96,7 +96,7 @@ class Temp extends event {
 const sensor = new Temp();
 
 sensor.on('highTemp', ({date, temp}) => {
-  console.log(`Attention Detention! Average air temp. higher than 30 C (${temp} Celsium) on ${date}`);
+  console.log(`Attention Detention${String.fromCodePoint(0x2757)} Average air temp. higher than 30 C (${temp} Celsium) on ${date}`);
   console.log('----------------------------------------------------')
 });
 
