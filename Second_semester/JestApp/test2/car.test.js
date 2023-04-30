@@ -1,4 +1,4 @@
-const findCarNumber=require('../src/num')
+const findCarNumber=require('./num')
 describe('find correct Number', () => {
     test('should return an empty string if either argument is not a string', () => {
       expect(findCarNumber('Katania', 1905)).toBe('');
