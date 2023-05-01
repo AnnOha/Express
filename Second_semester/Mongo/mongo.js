@@ -1,65 +1,48 @@
 const request = require('request');
-const gunzipMaybe = require('gunzip-maybe');
-const readline = require('readline');
-const mongoose = require('mongoose');
+const zlib = require('zlib');
+const { MongoClient } = require('mongodb');
 
-// Підключення до MongoDB
-mongoose.connect('mongodb+srv://romanroketskiy:YOUR-KEY@cluster0.h4h4zwe.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
-const db = mongoose.connection;
+// URL файлу з даними про фільми
+const url = 'https://popwatch-staging.s3.us-east-2.amazonaws.com/movies_1.gz';
 
-db.on('error', console.error.bind(console, `Помилка з'єднання з базою даних:`));
-db.once('open', () => {
-  console.log(`З'єднання з базою даних встановлено.`);
+// Функція для розпакування архіву та парсингу JSON
+function parseData(data) {
+  return data.toString()
+    .split('\n')
+    .filter(line => line)
+    .map(line => JSON.parse(line));
+}
 
-  // Генерація схеми фільмів
-  const movieSchema = new mongoose.Schema({}, {strict: false});
+// Встановлюємо з'єднання з базою даних
+const client = new MongoClient('mongodb+srv://annaoha15:Lonely25@cluster0.okalbgn.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 
-  const Movie = mongoose.model('Movie', movieSchema);
+// Функція для запису даних в базу даних
+async function insertDataToMongoDB(data) {
+  try {
+    // Підключаємося до бази даних
+    await client.connect();
+    const database = client.db('movies');
+    const collection = database.collection('movies_collection');
+  
+    // Вставляємо дані в колекцію
+    const result = await collection.insertMany(data);
+    console.log(`${result.insertedCount} documents were inserted`);
+  } finally {
+    // Закриваємо з'єднання з базою даних
+    await client.close();
+  }
+}
 
-  // Завантаження архіву з даними про фільми
-  const url = 'https://popwatch-staging.s3.us-east-2.amazonaws.com/movies_1.gz';
-  const options = {
-    url,
-    headers: {
-      'Accept-Encoding': 'gzip'
-    }
-  };
+// Завантажуємо файл та обробляємо його
+request({ url, encoding: null }, (err, res, body) => {
+  if (err) throw err;
 
-  const req = request(options);
-  const gunzip = gunzipMaybe();
-  const rl = readline.createInterface({
-    input: gunzip
+  // Розпаковуємо архів та парсимо JSON
+  zlib.gunzip(body, (err, data) => {
+    if (err) throw err;
+    const parsedData = parseData(data);
+
+    // Записуємо дані в базу даних
+    insertDataToMongoDB(parsedData);
   });
-
-  const promises = []; // Масив обіцянок для зберігання Promise об'єктів при залитті фільмів у базу
-
-  rl.on('line', line => {
-    try {
-      const movie = JSON.parse(line);
-      const newMovie = new Movie(movie);
-
-      // Залиття фільму у базу та додавання Promise до масиву
-      promises.push(newMovie.save().then(() => {
-          console.log('Фільм успішно залито у базу.');
-      }));
-    } catch (error) {
-      console.error(`Помилка при розпарсуванні рядка: ${error}`);
-    }
-  });
-
-  rl.on('close', () => {
-    Promise.all(promises) // Очікування завершення всіх операцій залиття фільмів у базу
-
-    .then(() => {
-      console.log('Завантаження та залиття даних завершено.');
-      db.close();
-    })
-
-    .catch(err => {
-      console.error(`Помилка при залитті філмів у базу: ${err}`);
-      db.close();
-    });
-  });
-
-  req.pipe(gunzip);
 });
