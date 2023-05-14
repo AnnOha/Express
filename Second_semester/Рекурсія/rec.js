@@ -24,7 +24,7 @@ function findLanguage(node, targetLanguage) {
 }
 
 // Приклад використання функції для пошуку мови "English"
-const targetLanguage = "Abun";
+const targetLanguage = "Borana-Arsi-Guji Oromo";
 const result = findLanguage(tree, targetLanguage);
 
 if (result) {
